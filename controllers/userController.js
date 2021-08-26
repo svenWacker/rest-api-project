@@ -8,9 +8,9 @@ const getUser = async (req, res, next) => {
   try {
     // employee = await EmployeesData.findById(req.params.id);
     // employee = await EmployeesData.find({ name: req.params.name });
-    employee = await EmployeesData.findOne({ name: req.params.name });
-    console.log(employee);
-    if (employee == null) {
+    user = await UserData.findOne({ userName: req.params.userName });
+    console.log(user);
+    if (user == null) {
       // NOt found
       return res.status(404).json({ message: "Sorry, user NOT FOUND." });
     }
@@ -26,7 +26,7 @@ const getAllUser = async (req, res) => {
   try {
     // const employees = await EmployeesData.find().select("name age");
 
-    const user = await userData.find();
+    const user = await UserData.find();
     // 200 for Successful Ok
     // console.log(employees);
     res.status(200).json(
@@ -42,7 +42,7 @@ const getAllUser = async (req, res) => {
           userAddedDate: user.userAddedDate,
           request: {
             type: "GET",
-            url: `http://localhost:5000/user/${user.name}`,
+            url: `http://localhost:5000/user/${userName.userName}`,
           },
         };
       })
@@ -52,10 +52,32 @@ const getAllUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+// Add new Employee
+const addNewUser = async (req, res) => {
+  const user = new UserData({
+    userName: req.body.userName,
+    userPass: req.body.userPass,
+    age: req.body.age,
+    fbw: req.body.fbw,
+    toolStack: req.body.toolStack,
+    email: req.body.email,
+  });
+  try {
+    // save
+    const newUser = await UserData.save();
+    // 201 for Successful Created
+    res.status(201).json(newUser);
+  } catch (err) {
+    // 400 for Bad request
+    res.status(400).json({
+      message: err.message,
+    });
+  }
+};
 module.exports = {
   getUser,
   getAllUser,
-  //   addNewUser,
+  addNewUser,
   //   getOneUser,
   //   updateOneUser,
 };

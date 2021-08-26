@@ -4,7 +4,7 @@ const userData = require("../model/userModel");
 const {
   getUser,
   getAllUser,
-  //   addNewUser,
+  addNewUser,
   //   getOneUser,
   //   updateOneUser,
 } = require("../controllers/userController");
@@ -14,12 +14,13 @@ router
   // GET all employees
   .get(getAllUser);
 // user route
+//   .post(addNewUser);
 router
   .route("/user")
   // display all user
-  .get(getUser);
-// add new user
-//   .post(addNewUser);
+  .get(getUser)
+  // add new user
+  .post(addNewUser);
 // // userName route
 // router
 //   .route("/user/:name")
