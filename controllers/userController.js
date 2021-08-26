@@ -1,4 +1,4 @@
-const userData = require("../model/userModel");
+const UserData = require("../model/userModel");
 const express = require("express");
 
 // Middleware
@@ -6,8 +6,6 @@ const express = require("express");
 const getUser = async (req, res, next) => {
   let user;
   try {
-    // employee = await EmployeesData.findById(req.params.id);
-    // employee = await EmployeesData.find({ name: req.params.name });
     user = await UserData.findOne({ userName: req.params.userName });
     console.log(user);
     if (user == null) {
@@ -24,11 +22,7 @@ const getUser = async (req, res, next) => {
 
 const getAllUser = async (req, res) => {
   try {
-    // const employees = await EmployeesData.find().select("name age");
-
     const user = await UserData.find();
-    // 200 for Successful Ok
-    // console.log(user);
     res.status(200).json(
       user.map((user) => {
         return {
@@ -48,7 +42,6 @@ const getAllUser = async (req, res) => {
       })
     );
   } catch (err) {
-    // 500 Internal server error
     res.status(500).json({ message: err.message });
   }
 };

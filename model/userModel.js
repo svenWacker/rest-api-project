@@ -33,4 +33,4 @@ const userDataSchema = new mongoose.Schema({
   },
 });
 // create new collection
-module.exports = mongoose.model("userData", userDataSchema);
+module.exports = mongoose.model("UserData", userDataSchema);
