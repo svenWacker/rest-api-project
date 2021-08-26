@@ -6,7 +6,7 @@ const express = require("express");
 const getUser = async (req, res, next) => {
   let user;
   try {
-    user = await UserData.findOne({ userName: req.params.userName });
+    user = await UserData.findOne({ user: req.params.userName });
     console.log(user);
     if (user == null) {
       // NOt found
@@ -47,7 +47,7 @@ const getAllUser = async (req, res) => {
 };
 // Add new user
 const addNewUser = async (req, res) => {
-  const user = new UserData({
+  const user = new userData({
     userName: req.body.userName,
     userPass: req.body.userPass,
     age: req.body.age,
