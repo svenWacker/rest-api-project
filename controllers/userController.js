@@ -26,7 +26,7 @@ const getAllUser = async (req, res) => {
   try {
     // const employees = await EmployeesData.find().select("name age");
 
-    const user = await userData.find();
+    const user = await UserData.find();
     // 200 for Successful Ok
     // console.log(user);
     res.status(200).json(
@@ -42,7 +42,7 @@ const getAllUser = async (req, res) => {
           userAddedDate: user.userAddedDate,
           request: {
             type: "GET",
-            url: `http://localhost:5000/user/${userName.userName}`,
+            url: `http://localhost:5000/user/${user.userName}`,
           },
         };
       })
@@ -52,7 +52,7 @@ const getAllUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-// Add new Employee
+// Add new user
 const addNewUser = async (req, res) => {
   const user = new UserData({
     userName: req.body.userName,
@@ -64,7 +64,7 @@ const addNewUser = async (req, res) => {
   });
   try {
     // save
-    const newUser = await userData.save();
+    const newUser = await user.save();
     // 201 for Successful Created
     res.status(201).json(newUser);
   } catch (err) {

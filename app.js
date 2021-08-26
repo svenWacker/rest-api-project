@@ -17,7 +17,7 @@ mongoose
   });
 // http:localhost:5000/user
 const user = require("./router/user");
-// app.use("/user", user);
+app.use("/user", user);
 
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to our user-app");
