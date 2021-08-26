@@ -16,7 +16,7 @@ mongoose
     console.log(`There was a problem ${error.message}`);
   });
 // http:localhost:5000/user
-const employees = require("./router/user");
+const user = require("./router/user");
 // app.use("/user", user);
 
 app.get("/", (req, res) => {
