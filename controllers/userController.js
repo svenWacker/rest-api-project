@@ -26,9 +26,9 @@ const getAllUser = async (req, res) => {
   try {
     // const employees = await EmployeesData.find().select("name age");
 
-    const user = await UserData.find();
+    const user = await userData.find();
     // 200 for Successful Ok
-    // console.log(employees);
+    // console.log(user);
     res.status(200).json(
       user.map((user) => {
         return {
@@ -37,7 +37,7 @@ const getAllUser = async (req, res) => {
           userPass: user.name,
           age: user.age,
           fbw: user.fbw,
-          toolStack: user.toolstack,
+          toolStack: user.toolStack,
           email: user.email,
           userAddedDate: user.userAddedDate,
           request: {
@@ -64,7 +64,7 @@ const addNewUser = async (req, res) => {
   });
   try {
     // save
-    const newUser = await UserData.save();
+    const newUser = await userData.save();
     // 201 for Successful Created
     res.status(201).json(newUser);
   } catch (err) {
