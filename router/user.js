@@ -20,7 +20,27 @@ router
   // display all user
   .get(getUser)
   // add new user
-  .post(addNewUser);
+  .post(async (req, res) => {
+    const user = new UserData({
+      userName: req.body.userName,
+      userPass: req.body.userPass,
+      age: req.body.age,
+      fbw: req.body.fbw,
+      toolStack: req.body.toolStack,
+      email: req.body.email,
+    });
+    try {
+      // save
+      const newUser = await user.save();
+      // 201 for Successful Created
+      res.status(201).json(newUser);
+    } catch (err) {
+      // 400 for Bad request
+      res.status(400).json({
+        message: err.message,
+      });
+    }
+  });
 // // userName route
 // router
 //   .route("/user/:name")
