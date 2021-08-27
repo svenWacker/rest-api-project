@@ -67,16 +67,26 @@ const addNewUser = async (req, res) => {
     });
   }
 };
-const getOneUser = async (req, res) => {
+
+const getOneUser = async (req, res, next) => {
+  let user;
   try {
-    let oneUser = await UserData.findOne({
+    user = await UserData.findOne({
       userName: req.params.userName,
     });
-    res.status(200).json(res.oneUser);
+    if (user == null) {
+      // NOt found
+      return res.status(404).json({ message: "Sorry, user NOT FOUND." });
+    }
   } catch (err) {
+    // 500 Internal server error
     res.status(500).json({ message: err.message });
   }
+  // res.status(200).json(res.user);
+  res.user = user;
+  next();
 };
+
 const updateOneUser = async (req, res) => {
   const { userName, userPass, age, fbw, email } = req.body;
   if (userName) {
