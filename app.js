@@ -16,8 +16,10 @@ mongoose
     console.log(`There was a problem ${error.message}`);
   });
 // http:localhost:5000/user
-const user = require("./router/user");
-app.use("/user", user);
+const userRouter = require("./router/user");
+app.use("/user", userRouter);
+const displayRouter = require("./router/user");
+app.use("/display", displayRouter);
 
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to our user-app");

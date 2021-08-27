@@ -27,8 +27,8 @@ const getAllUser = async (req, res) => {
       user.map((user) => {
         return {
           userId: user._id,
-          userName: user.name,
-          userPass: user.name,
+          userName: user.userName,
+          userPass: user.userPass,
           age: user.age,
           fbw: user.fbw,
           toolStack: user.toolStack,
@@ -77,10 +77,40 @@ const getOneUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+const updateOneUser = async (req, res) => {
+  const { userName, userPass, age, fbw, email } = req.body;
+  if (userName) {
+    res.user.userName = userName;
+  }
+  if (userPass) {
+    res.user.userPass = userPass;
+  }
+  if (age) {
+    res.user.age = age;
+  }
+  if (fbw) {
+    res.user.fbw = fbw;
+  }
+  if (toolStack) {
+    res.user.toolStack = toolStack;
+  }
+  if (email) {
+    res.user.email = email;
+  }
+  try {
+    // save
+    await res.user.save();
+    // 200 for Successful OK
+    res.status(200).json({ message: "user data updated", data: res.user });
+  } catch (err) {
+    // 400 for Bad request
+    res.status(400).json({ message: err.message });
+  }
+};
 module.exports = {
   getUser,
   getAllUser,
   addNewUser,
   getOneUser,
-  //   updateOneUser,
+  updateOneUser,
 };

@@ -4,7 +4,7 @@ const userDataSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: [true, "Name is must"],
-    unique: true,
+    // unique: true,
   },
   userPass: {
     type: String,
