@@ -12,17 +12,15 @@ const {
 router
   .route("/")
   // GET all employees
-  .get(getAllUser);
+  .get(getAllUser)
+  .post(addNewUser);
 // user route
-//   .post(addNewUser);
 router
   .route("/user")
   // display all user
-  .get(getUser)
-  // add new user
-  .post(addNewUser);
+  .get(getUser);
 // // userName route
-router.route("/user/:name");
+// router.route("/user/:name");
 //   // update user from DB
 //   .put(getUser, updateAllUserData)
 //   // update some user data from DB

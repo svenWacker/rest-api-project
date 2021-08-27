@@ -47,7 +47,7 @@ const getAllUser = async (req, res) => {
 };
 // Add new user
 const addNewUser = async (req, res) => {
-  const user = new userData({
+  const user = new UserData({
     userName: req.body.userName,
     userPass: req.body.userPass,
     age: req.body.age,
