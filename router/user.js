@@ -11,13 +11,14 @@ const {
 // root route
 router
   .route("/")
-  // GET all employees
+  // GET all user
   .get(getAllUser)
+  // add new user
   .post(addNewUser);
 // user route
 router
-  .route("/user")
-  // display all user
+  .route("/:userName")
+  // get one user
   .get(getUser);
 // // userName route
 // router.route("/user/:name");

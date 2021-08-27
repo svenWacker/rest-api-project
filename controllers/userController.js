@@ -67,10 +67,20 @@ const addNewUser = async (req, res) => {
     });
   }
 };
+const getOneUser = async (req, res) => {
+  try {
+    let oneUser = await UserData.findOne({
+      userName: req.params.userName,
+    });
+    res.status(200).json(res.oneUser);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 module.exports = {
   getUser,
   getAllUser,
   addNewUser,
-  //   getOneUser,
+  getOneUser,
   //   updateOneUser,
 };
