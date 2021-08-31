@@ -5,14 +5,13 @@ const { getUser } = require("../middleware");
 const {
   getAllUser,
   addNewUser,
-  getOneUser,
   updateOneUser,
 } = require("../controllers/userController");
 // root route
 userRouter.route("/").get(getAllUser).post(addNewUser);
 userRouter
   .route("/:userName")
-  .get(getUser, getOneUser)
+  .put(getUser, updateOneUser)
   .patch(getUser, updateOneUser);
 
 module.exports = userRouter;
