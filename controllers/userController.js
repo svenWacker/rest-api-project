@@ -1,26 +1,6 @@
 const UserData = require("../model/userModel");
 const express = require("express");
 
-// Middleware
-
-// Get one employee by name (only one)
-const getUser = async (req, res, next) => {
-  let user;
-  try {
-    user = await UserData.findOne({ user: req.params.userName });
-    console.log(user);
-    if (user == null) {
-      // NOt found
-      return res.status(404).json({ message: "Sorry, user NOT FOUND." });
-    }
-  } catch (err) {
-    // 500 Internal server error
-    res.status(500).json({ message: err.message });
-  }
-  res.user = user;
-  next();
-};
-
 const getAllUser = async (req, res) => {
   try {
     const user = await UserData.find();
@@ -115,7 +95,6 @@ const updateOneUser = async (req, res) => {
   }
 };
 module.exports = {
-  getUser,
   getAllUser,
   addNewUser,
   getOneUser,

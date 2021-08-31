@@ -1,9 +1,7 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-//  Development mode info
 app.use(morgan("dev"));
-// to process the json data
 app.use(express.json());
 
 // mongoDB
@@ -15,13 +13,16 @@ mongoose
   .catch((error) => {
     console.log(`There was a problem ${error.message}`);
   });
+
 // http:localhost:5000/
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to our user-app");
 });
+
 // http:localhost:5000/user
 const userRouter = require("./router/user");
 app.use("/user", userRouter);
+
 // http:localhost:5000/display
 const displayRouter = require("./router/display");
 app.use("/display", displayRouter);
