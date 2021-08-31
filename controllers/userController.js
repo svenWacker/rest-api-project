@@ -2,6 +2,7 @@ const UserData = require("../model/userModel");
 const express = require("express");
 
 // Middleware
+
 // Get one employee by name (only one)
 const getUser = async (req, res, next) => {
   let user;
@@ -34,10 +35,6 @@ const getAllUser = async (req, res) => {
           toolStack: user.toolStack,
           email: user.email,
           userAddedDate: user.userAddedDate,
-          request: {
-            type: "GET",
-            url: `http://localhost:5000/user/${user.userName}`,
-          },
         };
       })
     );
@@ -82,8 +79,8 @@ const getOneUser = async (req, res, next) => {
     // 500 Internal server error
     res.status(500).json({ message: err.message });
   }
-  // res.status(200).json(res.user);
-  res.user = user;
+  res.status(200).json(res.user);
+  // res.user = user;
   next();
 };
 
