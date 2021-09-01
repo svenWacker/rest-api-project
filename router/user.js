@@ -13,7 +13,7 @@ userRouter
   .get(getAllUser)
   .post(validateAge, validateFBW, addNewUser);
 userRouter
-  .route("/:userName")
+  .route("/:name")
   .put(getUser, updateOneUser)
   .patch(getUser, updateOneUser);
 

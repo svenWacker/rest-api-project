@@ -4,7 +4,7 @@ const express = require("express");
 const getUser = async (req, res, next) => {
   let user;
   try {
-    user = await UserData.findOne({ userName: req.params.userName });
+    user = await UserData.findOne({ userName: req.params.name });
     if (user == null) {
       return res.status(404).json({ message: "Sorry, user NOT FOUND." });
     }
