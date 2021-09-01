@@ -8,7 +8,7 @@ const getAllUser = async (req, res) => {
       user.map((user) => {
         return {
           userId: user._id,
-          userName: user.userName,
+          userName: user.userName.toLowerCase(),
           userPass: user.userPass,
           age: user.age,
           fbw: user.fbw,
