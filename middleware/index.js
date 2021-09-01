@@ -20,7 +20,7 @@ const validateAge = async (req, res, next) => {
   let userAge;
   try {
     userAge = await UserData.findOne({
-      userAge: req.params.age,
+      age: req.params.age,
     });
     if (userAge <= 17) {
       return res.status(404).json({
@@ -38,10 +38,10 @@ const validateAge = async (req, res, next) => {
 const validateFBW = async (req, res, next) => {
   let userAge;
   try {
-    userAge = await UserData.findOne({
-      userAge: req.params.userAge,
+    userFBW = await UserData.findOne({
+      fbw: req.params.fbw,
     });
-    if (fbw != 48) {
+    if (fbw != "48") {
       return res.status(404).json({
         message:
           "We can not validate your user. They are not a member of FBW48",
